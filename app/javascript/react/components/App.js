@@ -1,7 +1,13 @@
 import React from 'react'
 
+import LocalBoard from "./LocalBoard"
+
 export const App = (props) => {
-  return (<h1>Make It So React</h1>)
+  return (
+    <div id="chessBoard">
+      <LocalBoard />
+    </div>
+  )
 }
 
 export default App
