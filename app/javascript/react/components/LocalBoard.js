@@ -4,7 +4,9 @@ import Chessboard from 'chessboardjsx'
 
 const LocalBoard = (props) => {
   return(
-    <Chessboard position="start" />
+    <div id="chessBoard">
+      <Chessboard position="start" />
+    </div>
   )
 }
 
