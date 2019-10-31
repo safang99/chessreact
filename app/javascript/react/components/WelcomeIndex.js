@@ -6,7 +6,7 @@ import LocalBoard from "./LocalBoard"
 const WelcomeIndex = (props) => {
 
   return(
-    <div>
+    <div className="welcome">
       <div>
         <h1>Please select a game mode from below</h1>
       </div>
