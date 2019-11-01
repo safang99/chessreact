@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import Chessboard from 'chessboardjsx'
 import Chess from 'chess.js'
 
-const LocalBoard = (props) => {
+const OnlineBoardContainer = (props) => {
   const game = useRef(new Chess())
+  const [user, setUser] = useState({})
   const [board, setBoard] = useState({
     fen: "start",
     dropSquareStyle: {},
@@ -12,6 +13,54 @@ const LocalBoard = (props) => {
     square: "",
     history: []
   })
+
+  useEffect(() => {
+    fetch("/api/v1/users/current", {
+      credentials: 'same-origin',
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' }
+    })
+    .then((response) => {
+      let { ok } = response;
+      if (ok) {
+        return response.json();
+      }
+    })
+    .then((data) => {
+      setUser(data)
+    })
+    App.gameChannel = App.cable.subscriptions.create(
+      // Info that is sent to the subscribed method
+      {
+        channel: "GameChannel",
+        game_id: props.match.params["id"]
+        // currently this is hardcoded
+        // If you had router, you could do:
+        // chat_id: props.match.params["id"]
+      },
+      {
+        connected: () => console.log("GameChannel connected"),
+        disconnected: () => console.log("GameChannel disconnected"),
+        received: data => {
+
+          game.current.move({
+            from: data.move.from,
+            to: data.move.to,
+            promotion: "q"
+          });
+          
+          setBoard(
+            {...board,
+              fen: game.current.fen(),
+              history: game.current.history({ verbose: true }),
+              squareStyles: squareStyling({pieceSquare: board.pieceSquare, history: board.history})
+            })
+          // Data broadcasted from the chat channel
+          console.log(data)
+        }
+      }
+    );
+  }, [])
 
   const squareStyling = ({ pieceSquare, history }) => {
     const sourceSquare = history.length && history[history.length - 1].from;
@@ -79,7 +128,12 @@ const LocalBoard = (props) => {
         history: game.current.history({ verbose: true }),
         squareStyles: squareStyling({pieceSquare: board.pieceSquare, history: board.history})
       })
-      console.log(game.current.pgn()) // Displaying the building move list
+
+    App.gameChannel.send({
+     move: move,
+     user: user
+    })
+      // console.log(game.current.pgn()) // Displaying the building move list
   };
 
   const onMouseOverSquare = square => {
@@ -147,4 +201,4 @@ const LocalBoard = (props) => {
   )
 }
 
-export default LocalBoard
+export default OnlineBoardContainer

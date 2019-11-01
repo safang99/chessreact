@@ -1,4 +1,4 @@
-// App.match = App.cable.subscriptions.create("MatchChannel", {
+// App.game = App.cable.subscriptions.create("GameChannel", {
 //   connected: function() {
 //     // Called when the subscription is ready for use on the server
 //   },
