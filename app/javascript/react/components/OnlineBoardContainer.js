@@ -48,7 +48,7 @@ const OnlineBoardContainer = (props) => {
             to: data.move.to,
             promotion: "q"
           });
-          
+
           setBoard(
             {...board,
               fen: game.current.fen(),
@@ -182,6 +182,11 @@ const OnlineBoardContainer = (props) => {
       history: game.current.history({ verbose: true }),
       pieceSquare: ""
     });
+
+    App.gameChannel.send({
+     move: move,
+     user: user
+    })
   };
 
   return(
