@@ -6,5 +6,4 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: chessjsx_production
+  url: redis://redistogo:c6d3748a297c9cbba80ff7bb90597e8f@tetra.redistogo.com:9729/
