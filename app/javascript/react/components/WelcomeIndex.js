@@ -11,7 +11,9 @@ const WelcomeIndex = (props) => {
         <h1>Please select a game mode from below</h1>
       </div>
       <div>
-        <Link to="/local">Play a 2 player local game</Link>
+        <Link to="/local">Play a 1-2 player local game</Link>
+        <br/>
+        <Link to="/online/index">Play an online 2 player game</Link>
       </div>
     </div>
   )
