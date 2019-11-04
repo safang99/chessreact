@@ -13,6 +13,8 @@ const WelcomeIndex = (props) => {
       <div>
         <Link to="/local">Play a 1-2 player local game</Link>
         <br/>
+        <Link to="/computer">Play a game versus a computer</Link>
+        <br/>
         <Link to="/online/index">Play an online 2 player game</Link>
       </div>
     </div>
