@@ -131,18 +131,22 @@ const LocalBoard = (props) => {
   };
 
   return(
-    <div id="chessBoard">
-      <Chessboard
-        position={board.fen}
-        showNotation={true}
-        sparePieces={true}
-        onDrop={onDrop}
-        onMouseOverSquare={onMouseOverSquare}
-        onMouseOutSquare={onMouseOutSquare}
-        squareStyles={board.squareStyles}
-        onDragOverSquare={onDragOverSquare}
-        onSquareClick={onSquareClick}
-      />
+    <div className="grid-container">
+      <div className="grid-x grid-margin-x">
+        <div id="chessBoard">
+          <Chessboard
+            position={board.fen}
+            showNotation={true}
+            sparePieces={true}
+            onDrop={onDrop}
+            onMouseOverSquare={onMouseOverSquare}
+            onMouseOutSquare={onMouseOutSquare}
+            squareStyles={board.squareStyles}
+            onDragOverSquare={onDragOverSquare}
+            onSquareClick={onSquareClick}
+            />
+        </div>
+      </div>
     </div>
   )
 }
