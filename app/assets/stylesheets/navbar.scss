@@ -1,1 +1,12 @@
 @import "./palette";
+
+.top-bar, .top-bar ul {
+  background: $black;
+  .top-bar-section {
+    background: $black;
+  }
+}
+
+nav.top-bar h1 a {
+  color: $white;
+}
