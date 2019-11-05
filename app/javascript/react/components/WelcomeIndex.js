@@ -7,7 +7,7 @@ const WelcomeIndex = (props) => {
 
   return(
     <div className="welcome">
-      <div>
+      <div className="welcome-text">
         <h1>Please select a game mode from below</h1>
       </div>
       <div className="grid-container">
