@@ -15,10 +15,10 @@ const WelcomeIndex = (props) => {
             <Link className="button cell small-12 medium-4 game-buttons" to="/local">
               Local Game
             </Link>
-            <Link className="button cell small-12 medium-4 game-buttons" to="/local">
-              Vs Computer
-            </Link>
-            <Link className="button cell small-12 medium-4 game-buttons" to="/online/index">Play online</Link>
+          <Link className="button cell small-12 medium-4 game-buttons" to="/local">
+            Vs Computer
+          </Link>
+          <Link className="button cell small-12 medium-4 game-buttons" to="/online/index">Play online</Link>
         </div>
       </div>
     </div>
