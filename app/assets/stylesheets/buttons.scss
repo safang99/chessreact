@@ -1,0 +1,60 @@
+@import "./palette";
+
+.log-in-buttons li {
+  list-style: none;
+}
+
+.log-in-buttons input {
+  background: $black;
+  background-color: $anti-flash-white;
+  border: none;
+  color: $black;
+  border-radius: 4px;
+  width: 8em;
+  height: 2em;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  transition: 0.2s;
+  text-align: center;
+  padding: 0.25em;
+  margin: 0.25em;
+}
+
+.log-in-buttons input:hover {
+  background-color: $outer-space;
+  border: 1px solid $anti-flash-white;
+  color: $white;
+  cursor: pointer;
+}
+
+.button-group {
+  background: $black;
+}
+
+.game-buttons input {
+  background: $black;
+  background-color: $anti-flash-white;
+  border: none;
+  color: $black;
+  border-radius: 4px;
+  width: 8em;
+  height: 2em;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  transition: 0.2s;
+  text-align: center;
+  padding: 0.25em;
+  margin: 0.25em;
+}
+
+.game-buttons input:hover {
+  background-color: $outer-space;
+  border: 1px solid $anti-flash-white;
+  color: $white;
+  cursor: pointer;
+}
+
+.button {
+  background-color: $black;
+  border-radius: 5px;
+}
