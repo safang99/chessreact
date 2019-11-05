@@ -7,15 +7,19 @@ const WelcomeIndex = (props) => {
 
   return(
     <div className="welcome">
-      <div>
+      <div className="welcome-text">
         <h1>Please select a game mode from below</h1>
       </div>
-      <div>
-        <Link to="/local">Play a 1-2 player local game</Link>
-        <br/>
-        <Link to="/computer">Play a game versus a computer</Link>
-        <br/>
-        <Link to="/online/index">Play an online 2 player game</Link>
+      <div className="grid-container">
+        <div className="grid-x grid-margin-x button_group">
+            <Link className="button cell small-12 medium-4" to="/local">
+              Local Game
+            </Link>
+            <Link className="button cell small-12 medium-4" to="/local">
+              Vs Computer
+            </Link>
+            <Link className="button cell small-12 medium-4" to="/online/index">Play online</Link>
+        </div>
       </div>
     </div>
   )
