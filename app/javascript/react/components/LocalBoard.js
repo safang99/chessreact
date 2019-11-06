@@ -10,7 +10,8 @@ const LocalBoard = (props) => {
     squareStyles: {},
     pieceSquare: "",
     square: "",
-    history: []
+    history: [],
+    pgnArray: []
   })
 
   const squareStyling = ({ pieceSquare, history }) => {
@@ -77,11 +78,12 @@ const LocalBoard = (props) => {
       {...board,
         fen: game.current.fen(),
         history: game.current.history({ verbose: true }),
-        squareStyles: squareStyling({pieceSquare: board.pieceSquare, history: board.history})
+        squareStyles: squareStyling({pieceSquare: board.pieceSquare, history: board.history}),
+        pgnArray: game.current.pgn({ max_width: 5, newline_char: ","}).split(",")
       })
-      console.log(game.current.pgn()) // Displaying the building move list
+      console.log(game.current.pgn({ max_width: 5, newline_char: "," }).split(",")) // Displaying the building move list
       // console.log(game.current.history())
-      console.log(game.current.pgn({ max_width: 5, newline_char: '<br />' }))
+      // console.log(game.current.pgn({ max_width: 5, newline_char: '<br />' }))
 
   };
 
@@ -133,17 +135,60 @@ const LocalBoard = (props) => {
     });
   };
 
-  const pgn = game.current.pgn({ max_width: 4})
+  const pgn = game.current.pgn({ max_width: 5, newline_char: <br></br> })
+  const pgnRows = board.pgnArray.map((pgn) => {
+    let cols = pgn.split(" ")
+    if (cols.length === 3) {
+      return(
+        <tr>
+          <td>{cols[0]}</td>
+          <td>{cols[1]}</td>
+          <td>{cols[2]}</td>
+        </tr>
+      )
+    } else if (cols.length === 2) {
+      return(
+        <tr>
+          <td>{cols[0]}</td>
+          <td>{cols[1]}</td>
+          <td></td>
+        </tr>
+      )
+    }
+  })
 
+
+  // <div className="callout cell small-12 medium-6 pgn">
+  //   {pgn}
+  // </div>
+
+    // let moves = game.current.history()
+    //
+    // let moveLength
+    // if (moves !== null) {
+    //   moveLength = moves.length
+    // }
+    // let turnDisplay = 1
+    //
+    // let i = 0
+    // while (i < moveLength) {
+    //   debugger
+    //   i++
+    // }
+
+    // const pgn = moves.map((move, idx) => {
+    //   debugger
+    // })
 
   return(
     <div className="grid-container">
       <div className="grid-x grid-margin-x">
-        <div  className="cell small-12 medium-6" id="chessBoard">
+        <div className="cell small-12 medium-6 board-position" id="chessBoard">
           <Chessboard
             position={board.fen}
             showNotation={true}
-            sparePieces={true}
+            sparePieces={false}
+            boardStyle={{backgroundColor: 'rgb(240, 217, 181)'}}
             onDrop={onDrop}
             onMouseOverSquare={onMouseOverSquare}
             onMouseOutSquare={onMouseOutSquare}
@@ -152,8 +197,29 @@ const LocalBoard = (props) => {
             onSquareClick={onSquareClick}
             />
         </div>
-        <div className="callout pgn cell small-12 medium-6">
-          {pgn}
+        <div className="cell small-12 medium-6">
+          <table className="unstriped hover">
+            <thead>
+              <tr>
+                <th width="20">Turn</th>
+                <th width="20">White</th>
+                <th width="20">Black</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pgnRows}
+            </tbody>
+          </table>
+          <table className="unstriped hover">
+            <thead>
+              <tr>
+                <th width="40">Moves</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pgnRows}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
