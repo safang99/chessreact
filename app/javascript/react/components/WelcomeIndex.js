@@ -12,13 +12,13 @@ const WelcomeIndex = (props) => {
       </div>
       <div className="grid-container">
         <div className="grid-x grid-margin-x button_group">
-            <Link className="button cell small-12 medium-4" to="/local">
+            <Link className="button cell small-12 medium-4 game-buttons" to="/local">
               Local Game
             </Link>
-            <Link className="button cell small-12 medium-4" to="/local">
-              Vs Computer
-            </Link>
-            <Link className="button cell small-12 medium-4" to="/online/index">Play online</Link>
+          <Link className="button cell small-12 medium-4 game-buttons" to="/local">
+            Vs Computer
+          </Link>
+          <Link className="button cell small-12 medium-4 game-buttons" to="/online/index">Play online</Link>
         </div>
       </div>
     </div>

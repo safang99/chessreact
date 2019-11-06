@@ -80,6 +80,9 @@ const LocalBoard = (props) => {
         squareStyles: squareStyling({pieceSquare: board.pieceSquare, history: board.history})
       })
       console.log(game.current.pgn()) // Displaying the building move list
+      // console.log(game.current.history())
+      console.log(game.current.pgn({ max_width: 5, newline_char: '<br />' }))
+
   };
 
   const onMouseOverSquare = square => {
@@ -130,19 +133,29 @@ const LocalBoard = (props) => {
     });
   };
 
+  const pgn = game.current.pgn({ max_width: 4})
+
+
   return(
-    <div id="chessBoard">
-      <Chessboard
-        position={board.fen}
-        showNotation={true}
-        sparePieces={true}
-        onDrop={onDrop}
-        onMouseOverSquare={onMouseOverSquare}
-        onMouseOutSquare={onMouseOutSquare}
-        squareStyles={board.squareStyles}
-        onDragOverSquare={onDragOverSquare}
-        onSquareClick={onSquareClick}
-      />
+    <div className="grid-container">
+      <div className="grid-x grid-margin-x">
+        <div  className="cell small-12 medium-6" id="chessBoard">
+          <Chessboard
+            position={board.fen}
+            showNotation={true}
+            sparePieces={true}
+            onDrop={onDrop}
+            onMouseOverSquare={onMouseOverSquare}
+            onMouseOutSquare={onMouseOutSquare}
+            squareStyles={board.squareStyles}
+            onDragOverSquare={onDragOverSquare}
+            onSquareClick={onSquareClick}
+            />
+        </div>
+        <div className="callout pgn cell small-12 medium-6">
+          {pgn}
+        </div>
+      </div>
     </div>
   )
 }

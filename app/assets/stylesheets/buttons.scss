@@ -47,7 +47,7 @@
   margin: 0.25em;
 }
 
-.game-buttons input:hover {
+.game-buttons:hover {
   background-color: $outer-space;
   border: 1px solid $anti-flash-white;
   color: $white;
@@ -56,5 +56,6 @@
 
 .button {
   background-color: $black;
-  border-radius: 5px;
+  border-radius: 20px;
+  margin-top: 2em;
 }
