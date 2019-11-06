@@ -81,9 +81,9 @@ const LocalBoard = (props) => {
         squareStyles: squareStyling({pieceSquare: board.pieceSquare, history: board.history}),
         pgnArray: game.current.pgn({ max_width: 5, newline_char: ","}).split(",")
       })
-      console.log(game.current.pgn({ max_width: 5, newline_char: "," }).split(",")) // Displaying the building move list
-      // console.log(game.current.history())
-      // console.log(game.current.pgn({ max_width: 5, newline_char: '<br />' }))
+      // console.log(game.current.pgn({ max_width: 5, newline_char: "," }).split(",")) // Displaying the building move list
+      // // console.log(game.current.history())
+      // // console.log(game.current.pgn({ max_width: 5, newline_char: '<br />' }))
 
   };
 
@@ -131,7 +131,8 @@ const LocalBoard = (props) => {
       {...board,
       fen: game.current.fen(),
       history: game.current.history({ verbose: true }),
-      pieceSquare: ""
+      pieceSquare: "",
+      pgnArray: game.current.pgn({ max_width: 5, newline_char: ","}).split(",")
     });
   };
 
@@ -157,29 +158,6 @@ const LocalBoard = (props) => {
     }
   })
 
-
-  // <div className="callout cell small-12 medium-6 pgn">
-  //   {pgn}
-  // </div>
-
-    // let moves = game.current.history()
-    //
-    // let moveLength
-    // if (moves !== null) {
-    //   moveLength = moves.length
-    // }
-    // let turnDisplay = 1
-    //
-    // let i = 0
-    // while (i < moveLength) {
-    //   debugger
-    //   i++
-    // }
-
-    // const pgn = moves.map((move, idx) => {
-    //   debugger
-    // })
-
   return(
     <div className="grid-container">
       <div className="grid-x grid-margin-x">
@@ -204,16 +182,6 @@ const LocalBoard = (props) => {
                 <th width="20">Turn</th>
                 <th width="20">White</th>
                 <th width="20">Black</th>
-              </tr>
-            </thead>
-            <tbody>
-              {pgnRows}
-            </tbody>
-          </table>
-          <table className="unstriped hover">
-            <thead>
-              <tr>
-                <th width="40">Moves</th>
               </tr>
             </thead>
             <tbody>
