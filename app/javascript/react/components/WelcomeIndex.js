@@ -8,7 +8,8 @@ const WelcomeIndex = (props) => {
   return(
     <div className="welcome">
       <div className="welcome-text">
-        <h1>Please select a game mode from below</h1>
+        <div className="spacer"></div>
+        <h1 className="play-prompt">Please select a game mode from below</h1>
       </div>
       <div className="grid-container">
         <div className="grid-x grid-margin-x button_group">
