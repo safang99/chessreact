@@ -33,25 +33,6 @@ const ComputerBoard = (props) => {
     return bestMoveFound;
   };
 
-  // let currentBoard = () => {
-  //     var output = [],
-  //       row = [];
-  //
-  //     for (var i = SQUARES.a8; i <= SQUARES.h1; i++) {
-  //       if (board[i] == null) {
-  //         row.push(null);
-  //       } else {
-  //         row.push({ type: board[i].type, color: board[i].color });
-  //       }
-  //       if ((i + 1) & 0x88) {
-  //         output.push(row);
-  //         row = [];
-  //         i += 8;
-  //       }
-  //     }
-  //     return output;
-  //   }
-
   const minimax = (depth, game, alpha, beta, isMaximisingPlayer) => {
     positionCount++;
     if (depth === 0) {
@@ -198,9 +179,6 @@ const ComputerBoard = (props) => {
 
   const kingEvalBlack = reverseArray(kingEvalWhite);
 
-
-
-
   const getPieceValue = (piece, x, y) => {
     if (piece === null) {
         return 0;
@@ -226,12 +204,6 @@ const ComputerBoard = (props) => {
     return piece.color === 'w' ? absoluteValue : -absoluteValue;
   };
 
-
-  // const calculateBestMove = (game) => {
-  //   let newGameMoves = game.moves();
-  //   return newGameMoves[Math.floor(Math.random() * newGameMoves.length)];
-  // };
-
   const makeBestMove = () => {
     let bestMove = getBestMove(game.current);
     game.current.move(bestMove);
@@ -248,14 +220,6 @@ const ComputerBoard = (props) => {
         alert('Game over');
     }
   };
-
-  // const getBestMove = (game) => {
-  //     if (game.game_over()) {
-  //         alert('Game over');
-  //     }
-  //     let bestMove = calculateBestMove(game);
-  //     return bestMove;
-  // };
 
   let positionCount
   const getBestMove = (game) => {
@@ -391,14 +355,6 @@ const ComputerBoard = (props) => {
     });
 
     window.setTimeout(makeBestMove(), 250);
-    //
-    // setBoard(
-    //   {...board,
-    //   fen: game.current.fen(),
-    //   history: game.current.history({ verbose: true }),
-    //   pieceSquare: "",
-    //   pgnArray: game.current.pgn({ max_width: 5, newline_char: ","}).split(",")
-    // });
   };
 
   const pgn = game.current.pgn({ max_width: 5, newline_char: <br></br> })
