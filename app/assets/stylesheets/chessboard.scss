@@ -1,13 +1,11 @@
-.board-position {
-  margin-left: 40px;
-}
+@import "./palette";
 
-.pgn {
+.board-position {
   margin-top: 72px;
-  font-size: 20px;
-  border: 2px solid white;
-  border-radius: 30px;
-  padding: 20px;
-  height: 300px;
-  width: 80px;
+  margin-left: 40px;
+  max-width: 566px;
+  min-width: 565px;
+  max-height: 566px;
+  min-height: 565px;
+  border-style: solid;
 }

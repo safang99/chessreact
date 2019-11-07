@@ -11,7 +11,8 @@ const OnlineBoardContainer = (props) => {
     squareStyles: {},
     pieceSquare: "",
     square: "",
-    history: []
+    history: [],
+    pgnArray: []
   })
 
   useEffect(() => {
@@ -53,7 +54,8 @@ const OnlineBoardContainer = (props) => {
             {...board,
               fen: game.current.fen(),
               history: game.current.history({ verbose: true }),
-              squareStyles: squareStyling({pieceSquare: board.pieceSquare, history: board.history})
+              squareStyles: squareStyling({pieceSquare: board.pieceSquare, history: board.history}),
+              pgnArray: game.current.pgn({ max_width: 5, newline_char: ","}).split(",")
             })
           // Data broadcasted from the chat channel
           console.log(data)
@@ -126,7 +128,8 @@ const OnlineBoardContainer = (props) => {
       {...board,
         fen: game.current.fen(),
         history: game.current.history({ verbose: true }),
-        squareStyles: squareStyling({pieceSquare: board.pieceSquare, history: board.history})
+        squareStyles: squareStyling({pieceSquare: board.pieceSquare, history: board.history}),
+        pgnArray: game.current.pgn({ max_width: 5, newline_char: ","}).split(",")
       })
 
     App.gameChannel.send({
@@ -180,7 +183,8 @@ const OnlineBoardContainer = (props) => {
       {...board,
       fen: game.current.fen(),
       history: game.current.history({ verbose: true }),
-      pieceSquare: ""
+      pieceSquare: "",
+      pgnArray: game.current.pgn({ max_width: 5, newline_char: ","}).split(",")
     });
 
     App.gameChannel.send({
@@ -189,19 +193,58 @@ const OnlineBoardContainer = (props) => {
     })
   };
 
+  const pgnRows = board.pgnArray.map((pgn) => {
+    let cols = pgn.split(" ")
+    if (cols.length === 3) {
+      return(
+        <tr>
+          <td>{cols[0]}</td>
+          <td>{cols[1]}</td>
+          <td>{cols[2]}</td>
+        </tr>
+      )
+    } else if (cols.length === 2) {
+      return(
+        <tr>
+          <td>{cols[0]}</td>
+          <td>{cols[1]}</td>
+          <td></td>
+        </tr>
+      )
+    }
+  })
+
   return(
-    <div id="chessBoard">
-      <Chessboard
-        position={board.fen}
-        showNotation={true}
-        sparePieces={true}
-        onDrop={onDrop}
-        onMouseOverSquare={onMouseOverSquare}
-        onMouseOutSquare={onMouseOutSquare}
-        squareStyles={board.squareStyles}
-        onDragOverSquare={onDragOverSquare}
-        onSquareClick={onSquareClick}
-      />
+    <div className="grid-container">
+      <div className="grid-x grid-margin-x">
+        <div className="cell small-12 medium-6 board-position" id="chessBoard">
+          <Chessboard
+            position={board.fen}
+            showNotation={true}
+            sparePieces={false}
+            onDrop={onDrop}
+            onMouseOverSquare={onMouseOverSquare}
+            onMouseOutSquare={onMouseOutSquare}
+            squareStyles={board.squareStyles}
+            onDragOverSquare={onDragOverSquare}
+            onSquareClick={onSquareClick}
+          />
+        </div>
+        <div className="cell small-12 medium-6">
+          <table className="unstriped hover">
+            <thead>
+              <tr>
+                <th width="20">Turn</th>
+                <th width="20">White</th>
+                <th width="20">Black</th>
+              </tr>
+            </thead>
+            <tbody>
+              {pgnRows}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   )
 }
