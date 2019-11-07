@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'homes#index'
   get '/local', to: 'homes#index'
+  get '/computer', to: 'homes#index'
   get '/online/index', to: 'homes#index'
   get '/online/:id', to: 'homes#index'
 

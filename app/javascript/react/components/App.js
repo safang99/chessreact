@@ -5,6 +5,7 @@ import LocalBoard from "./LocalBoard"
 import WelcomeIndex from "./WelcomeIndex"
 import OnlineIndexContainer from "./OnlineIndexContainer"
 import OnlineBoardContainer from "./OnlineBoardContainer"
+import ComputerBoard from "./ComputerBoard"
 
 export const App = (props) => {
   return (
@@ -12,6 +13,7 @@ export const App = (props) => {
       <Switch>
         <Route exact path="/" component={WelcomeIndex} />
         <Route exact path="/local" component={LocalBoard} />
+        <Route exact path="/computer" component={ComputerBoard} />
         <Route exact path="/online/index" component={OnlineIndexContainer} />
         <Route exact path="/online/:id" component={OnlineBoardContainer} />
       </Switch>
