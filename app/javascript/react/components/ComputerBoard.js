@@ -15,7 +15,6 @@ const ComputerBoard = (props) => {
   })
 
   const minimaxRoot = (depth, game, isMaximisingPlayer) => {
-
     let newGameMoves = game.moves();
     let bestMove = -9999;
     let bestMoveFound;
@@ -72,20 +71,20 @@ const ComputerBoard = (props) => {
             }
         }
         return bestMove;
-    } else {
-        let bestMove = 9999;
-        for (let i = 0; i < newGameMoves.length; i++) {
-            game.move(newGameMoves[i]);
-            bestMove = Math.min(bestMove, minimax(depth - 1, game, alpha, beta, !isMaximisingPlayer));
-            game.undo();
-            beta = Math.min(beta, bestMove);
-            if (beta <= alpha) {
-                return bestMove;
-            }
-        }
+      } else {
+          let bestMove = 9999;
+          for (let i = 0; i < newGameMoves.length; i++) {
+              game.move(newGameMoves[i]);
+              bestMove = Math.min(bestMove, minimax(depth - 1, game, alpha, beta, !isMaximisingPlayer));
+              game.undo();
+              beta = Math.min(beta, bestMove);
+              if (beta <= alpha) {
+                  return bestMove;
+              }
+          }
         return bestMove;
-    }
-  };
+      }
+    };
 
   const evaluateBoard = (board) => {
     let totalEvaluation = 0;
@@ -362,7 +361,7 @@ const ComputerBoard = (props) => {
     let cols = pgn.split(" ")
     if (cols.length === 3) {
       return(
-        <tr>
+        <tr key={cols[0]}>
           <td>{cols[0]}</td>
           <td>{cols[1]}</td>
           <td>{cols[2]}</td>
@@ -370,7 +369,7 @@ const ComputerBoard = (props) => {
       )
     } else if (cols.length === 2) {
       return(
-        <tr>
+        <tr key={cols[0]}>
           <td>{cols[0]}</td>
           <td>{cols[1]}</td>
           <td></td>
@@ -387,7 +386,6 @@ const ComputerBoard = (props) => {
             position={board.fen}
             showNotation={true}
             sparePieces={false}
-            boardStyle={{backgroundColor: 'rgb(240, 217, 181)'}}
             onDrop={onDrop}
             onMouseOverSquare={onMouseOverSquare}
             onMouseOutSquare={onMouseOutSquare}
