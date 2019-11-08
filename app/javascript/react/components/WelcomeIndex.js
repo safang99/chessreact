@@ -16,7 +16,7 @@ const WelcomeIndex = (props) => {
             <Link className="button cell small-12 medium-4 game-buttons" data-tooltip data-position="top" title="A local chess game that can be played between 1-2 players on your computer." to="/local">
               Local Game
             </Link>
-          <Link className="button cell small-12 medium-4 game-buttons" data-tooltip data-position="top" title="Test your skills against a computer." to="/local">
+          <Link className="button cell small-12 medium-4 game-buttons" data-tooltip data-position="top" title="Test your skills against a computer." to="/computer">
             Vs Computer
           </Link>
           <Link className="button cell small-12 medium-4 game-buttons" data-tooltip data-position="top" title="Play online against another player. You must create an account to use this mode." to="/online/index">Play online</Link>
