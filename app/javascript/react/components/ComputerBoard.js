@@ -228,7 +228,7 @@ const ComputerBoard = (props) => {
     }
 
     positionCount = 0;
-    let depth = 3
+    let depth = 1
     let bestMove = minimaxRoot(depth, game, true);
 
     return bestMove;
