@@ -197,7 +197,7 @@ const OnlineBoardContainer = (props) => {
     let cols = pgn.split(" ")
     if (cols.length === 3) {
       return(
-        <tr>
+        <tr key={cols[0]}>
           <td>{cols[0]}</td>
           <td>{cols[1]}</td>
           <td>{cols[2]}</td>
@@ -205,7 +205,7 @@ const OnlineBoardContainer = (props) => {
       )
     } else if (cols.length === 2) {
       return(
-        <tr>
+        <tr key={cols[0]}>
           <td>{cols[0]}</td>
           <td>{cols[1]}</td>
           <td></td>
